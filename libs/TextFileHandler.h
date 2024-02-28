@@ -18,8 +18,17 @@ struct TextFileHandler {
 
     List<string> readLines() {
 
-        List<string> lines;
-        
+        List<string> lines; 
+        fstream file;
+        file.open(fileName, ios::in);
+        if (file.fail()) {
+        exit(1);
+    }
+        string line;
+        while (getline(file, line)) {
+        lines.add(line);
+        }
+        file.close();
 
         return lines;
 
@@ -28,15 +37,29 @@ struct TextFileHandler {
     bool writeLines(List<string> lines, unsigned int mode = ios::out) {
 
         fstream file;
-
-       
+        file.open(fileName, ios::out);
+        if(!file.is_open()) {
+        return false; 
+        }
+        for(int i = 0; i < lines.size; i++) {
+        file << lines.get(i) << endl;
+        }
+        file.close();
         return true;
 
     }
 
     bool writeSingleLine(string line, unsigned int mode = ios::out | ios::app) {
+        fstream file;
+        file.open(fileName, ios::out | ios::app);
 
+        if(!file.is_open()) {
+        return false;
+        }
 
+        file << line << endl;
+
+        file.close();
         return true;
 
     }

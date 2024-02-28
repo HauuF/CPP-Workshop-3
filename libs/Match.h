@@ -15,7 +15,7 @@ struct Match {
     int scoreVisitingTeam;
 
     int getPointsForLocalTeam() {
-
+        
        
         return 0;
     }
