@@ -56,7 +56,8 @@ struct TextFileHandler {
         if(!file.is_open()) {
         return false;
         }
-        file << line << endl;
+        file << endl;
+        file << line;
         file.close();
         return true;
     }
