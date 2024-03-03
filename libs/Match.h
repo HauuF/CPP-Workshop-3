@@ -14,15 +14,56 @@ struct Match {
     string visitingTeam;
     int scoreVisitingTeam;
 
-    int getPointsForLocalTeam() {
+    string getNameForLocalTeam(){
+        TextFileHandler fileHandler("resultados.txt");
+        List<string> lines = fileHandler.readLines();
+
+        for(int i = 0; i < lines.size; i++){
+        string line = lines.get(i);
+        List<string> tokens = split(line, ',');
+        localTeam = tokens.get(0);
+        }
+
+        return localTeam;
+    }
+
+    string getNameForVisitingTeam(){
+        TextFileHandler fileHandler("resultados.txt");
+        List<string> lines = fileHandler.readLines();
         
-       
-        return 0;
+        for(int i = 0; i < lines.size; i++){
+        string line = lines.get(i);
+        List<string> tokens = split(line, ',');
+        visitingTeam = tokens.get(2);
+        }
+
+        return visitingTeam;
+    }
+
+    int getPointsForLocalTeam() {
+        TextFileHandler fileHandler("resultados.txt");
+        List<string> lines = fileHandler.readLines();
+
+        for(int i = 0; i < lines.size; i++){
+        string line = lines.get(i);
+        List<string> tokens = split(line, ',');
+        scoreLocalTeam = stoi(tokens.get(1));
+        }
+
+        return scoreLocalTeam;
     }
 
     int getPointsForVisitingTeam() {
+        TextFileHandler fileHandler("resultados.txt");
+        List<string> lines = fileHandler.readLines();
 
-        return 0;
+        for(int i = 0; i < lines.size; i++){
+        string line = lines.get(i);
+        List<string> tokens = split(line, ',');
+        scoreVisitingTeam = stoi(tokens.get(3));
+        }
+
+        return scoreVisitingTeam;
     }
 };
 
