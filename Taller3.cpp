@@ -1,13 +1,9 @@
 #include "libs/List.h"
 #include "libs/Match.h"
 #include "libs/TextFileHandler.h"
-
 #include <iostream>
 
-
 using namespace std;
-
- 
 
 int main() {
     
@@ -44,17 +40,19 @@ int main() {
             break;
 
             case 2:
+            {
+            cout << endl;
             Match match;
-            char delimiter = ';';
+            char delimiter = ',';
             string LocalName, VisitingName, LocalScore, VisitingScore;
         getline(cin, LocalName);
-        cout << "Introduzca el nombre del equipo local:" << endl;
+        cout << "Introduzca el nombre del equipo local: ";
         getline(cin, LocalName);
-        cout << "Introduzca el marcador del equipo local:" << endl;
+        cout << "Introduzca el marcador del equipo local: ";
         getline(cin, LocalScore);
-        cout << "Introduzca el nombre del equipo visitante:" << endl;
+        cout << "Introduzca el nombre del equipo visitante: ";
         getline(cin, VisitingName);
-        cout << "Introduzca el marcador del equipo visitante:" << endl;
+        cout << "Introduzca el marcador del equipo visitante: ";
         getline(cin, VisitingScore);
         match.localTeam = LocalName;
         match.scoreLocalTeam = stoi(LocalScore);
@@ -62,12 +60,47 @@ int main() {
         match.scoreVisitingTeam = stoi(VisitingScore);
 
         string line = getLineFromMatch(match, delimiter);
+        cout << endl;
+        }
             break;
 
-           /*case 3:
+           case 3:
+           {
+           cout << endl;
+           int eleccion;
+        TextFileHandler fileHandler("resultados.txt");
+        List<string> lines = fileHandler.readLines();
+
+           cout << "Elija el partido que desea eliminar (para ver partidos regrese al menú (presionando 0) y presione 1.)" << endl;
+           cout << "Elija del 1 al "<<lines.size<<":";
+           cin >> eleccion;
+
+           if (eleccion >= 1 && eleccion <= lines.size) {
+        lines.remove(eleccion - 1);
+        fileHandler.writeLines(lines);
+        cout << "Partido eliminado" << endl;
+        cout << endl;
+        break;
+
+        } else if (eleccion == 0) {
+            cout << "Regresando al menú principal..." << endl;
+            cout << endl;
+            break;
+
+        } else {
+            cout << "Selección inválida." << endl;
+            cout << endl;
+        }
+        }
             break;
 
             case 4:
+        cout << endl;
+
+
+
+        cout << "Reportes creados." << endl;
+        cout << endl;
             break;
 
             case 5:
@@ -75,11 +108,9 @@ int main() {
             break;
 
             default:
-            cout << "Opci+on no disponible, vuelva a elegir." << endl;
-*/ 
+            cout << "Opción no disponible, vuelva a elegir." << endl;
+
         }
     }while(eleccion != 5);
     return 0;
-
-
 }
