@@ -72,16 +72,10 @@ Match getMatchFromLine(string line, char delimiter) {
 
 string getLineFromMatch(Match match, char delimiter) {
     string line;
-        string fileHandlerText("resultados.txt");
-        fstream file;
-        file.open(fileHandlerText, ios::out | ios::app);
-        if(file.fail()){
-        return line;
-        }
-        line = match.localTeam + delimiter + to_string(match.scoreLocalTeam) + delimiter + match.visitingTeam + delimiter + to_string(match.scoreVisitingTeam);
+    string fileHandlerText("resultados.txt");
+    line = match.localTeam + delimiter + to_string(match.scoreLocalTeam) + delimiter + match.visitingTeam + delimiter + to_string(match.scoreVisitingTeam);
     TextFileHandler fileHandler("resultados.txt");
     fileHandler.writeSingleLine(line);
-    file.close(); 
 
     return line;
 }  
