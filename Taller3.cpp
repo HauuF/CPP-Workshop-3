@@ -18,7 +18,7 @@ int main() {
     cout << "2. Agregar partido." << endl;
     cout << "3. Eliminar partido." << endl;
     cout << "4. Realizar reportes." << endl;
-    cout << "5. Salir." << endl;
+    cout << "0 Salir." << endl;
     cout << "Seleccione su opción de preferencia: ";
     cin >> eleccion;
         switch(eleccion){
@@ -68,8 +68,8 @@ int main() {
            {
            cout << endl;
            int eleccion;
-        TextFileHandler fileHandler("resultados.txt");
-        List<string> lines = fileHandler.readLines();
+            TextFileHandler fileHandler("resultados.txt");
+            List<string> lines = fileHandler.readLines();
 
            cout << "Elija el partido que desea eliminar (para ver partidos regrese al menú (presionando 0) y presione 1.)" << endl;
            cout << "Elija del 1 al "<<lines.size<<":";
@@ -95,15 +95,16 @@ int main() {
             break;
 
             case 4:
+            {
         cout << endl;
-
-
-
+        Match match;
+        getMatchFromLine("", ';');     
         cout << "Reportes creados." << endl;
         cout << endl;
+            }
             break;
 
-            case 5:
+            case 0:
             cout << "Saliendo..." << endl;
             break;
 
@@ -111,6 +112,6 @@ int main() {
             cout << "Opción no disponible, vuelva a elegir." << endl;
 
         }
-    }while(eleccion != 5);
+    }while(eleccion != 0);
     return 0;
 }
